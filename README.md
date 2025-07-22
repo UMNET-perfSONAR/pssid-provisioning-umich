@@ -9,12 +9,13 @@ git clone https://github.com/UMNET-perfSONAR/ansible-playbook-bootstrap.git
 cd ansible-playbook-bootstrap/roles 
 git clone https://github.com/UMNET-perfSONAR/ansible-role-bootstrap-hardware.git
 ```
-3. cd out of the playbook bootstrap directory (back into the working directory you created earlier), and clone the inventory and daemon repos
+3. Install roles with `ansible-galaxy install -f -r requirements.yml --ignore-errors`
+4. cd out of the playbook bootstrap directory (back into the working directory you created earlier), and clone the inventory and daemon repos
 ```
 git clone https://github.com/UMNET-perfSONAR/ansible-inventory-pssid-ilab.git
 git clone https://github.com/UMNET-perfSONAR/ansible-playbook-pssid-daemon.git
 ```
-4. The resulting file tree (omitting some files and directories) should look something like this:
+5. The resulting file tree (omitting some files and directories) should look something like this:
 ```
 ansible-working/
 ├── ansible-inventory-pssid-ilab
@@ -23,8 +24,8 @@ ansible-working/
 │       └── ansible-role-bootstrap-hardware
 └── ansible-playbook-pssid-daemon
 ```
-5. Edit the `hosts` files located at `ansible-inventory-pssid-ilab/inventory/hosts` and `ansible-playbook-pssid-daemon/inventory/hosts` to contain the IPs of your probes
-6. cd into the `ansible-playbook-bootstrap` directory and run the following command (if you want to limit the hosts down to one IP on the list for bootstrapping, add the --limit XXX.XXX.XXX.XXX parameter after the inventory path)
+6. Edit the `hosts` files located at `ansible-inventory-pssid-ilab/inventory/hosts` and `ansible-playbook-pssid-daemon/inventory/hosts` to contain the IPs of your probes
+7. cd into the `ansible-playbook-bootstrap` directory and run the following command (if you want to limit the hosts down to one IP on the list for bootstrapping, add the --limit XXX.XXX.XXX.XXX parameter after the inventory path)
 ```
 ansible-playbook --ask-pass --ask-become-pass --user usernamehere --become --become-user root --become-method su --inventory ../ansible-inventory-pssid-ilab/inventory bootstrap.yml
 ```
